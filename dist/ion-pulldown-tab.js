@@ -12,21 +12,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 var IonPullDownTabComponent = (function () {
     function IonPullDownTabComponent() {
     }
     return IonPullDownTabComponent;
 }());
 export { IonPullDownTabComponent };
-// @HostBinding('class.pulldown-tab') pulldowntab: boolean = true;
 IonPullDownTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ion-pulldown-tab',
-                template: '<ng-content></ng-content>',
-                host: {
-                    '[pulldown-tab]': 'pulldown-tab'
-                }
+                template: '<ng-content></ng-content>'
             },] },
 ];
 /** @nocollapse */

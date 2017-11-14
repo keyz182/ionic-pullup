@@ -13,15 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import {Component, HostBinding, } from '@angular/core'
+import {Component} from '@angular/core'
 
 @Component({
     selector: 'ion-pulldown-tab',
-    template: '<ng-content></ng-content>',
-    host: {
-        '[pulldown-tab]':'pulldown-tab'
-    }
+    template: '<ng-content></ng-content>'
 })
 export class IonPullDownTabComponent  {
-    // @HostBinding('class.pulldown-tab') pulldowntab: boolean = true;
 }
