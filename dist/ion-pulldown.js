@@ -38,7 +38,6 @@ var IonPullDownComponent = (function () {
         this.onCollapse = new EventEmitter();
         this.onMinimize = new EventEmitter();
         this.onStateChange = new EventEmitter();
-        this.dragStartY = null;
         this.el.nativeElement.draggable = 'true';
         this._headerMeta = {
             height: 0,
@@ -70,11 +69,9 @@ var IonPullDownComponent = (function () {
             hammerOpts['inputClass'] = window['Hammer'].TouchInput;
         }
         function handler(event) {
-            console.log(event.type);
             switch (event.type) {
                 case 'panstart':
-                    console.log("->panstart");
-                    component.dragStartY = null;
+                    console.log(component.childHeader);
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transition', 'none');
                     break;
                 case 'pan':
@@ -90,8 +87,6 @@ var IonPullDownComponent = (function () {
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transform', 'translate3d(0, ' + -xlate + 'px, 0)');
                     break;
                 case 'panend':
-                    console.log("->panend");
-                    component.dragStartY = null;
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transition', '300ms ease-in-out');
                     // Check if within buffer of top/bottom
                     if (component._headerMeta.posY < (component._headerMeta.height * (1 / 5))) {
@@ -175,6 +170,7 @@ var IonPullDownComponent = (function () {
         this.onExpand.emit(null);
         this.onStateChange.emit(null);
         console.log('this._headerMeta.lastPosY : ' + this._headerMeta.lastPosY);
+        console.log(this.childHeader);
     };
     IonPullDownComponent.prototype.collapse = function (isInit) {
         if (isInit === void 0) { isInit = false; }
@@ -187,6 +183,7 @@ var IonPullDownComponent = (function () {
         if (!isInit)
             this.onStateChange.emit(null);
         console.log('this._headerMeta.lastPosY : ' + this._headerMeta.lastPosY);
+        console.log(this.childHeader);
     };
     IonPullDownComponent.prototype.minimize = function () {
         this._headerMeta.lastPosY = this._headerMeta.height;
@@ -194,6 +191,7 @@ var IonPullDownComponent = (function () {
         this.renderer.setElementStyle(this.childHeader.nativeElement, 'transform', 'translate3d(0, ' + this._headerMeta.lastPosY + 'px, 0)');
         this.onMinimize.emit(null);
         this.onStateChange.emit(null);
+        console.log(this.childHeader);
     };
     IonPullDownComponent.prototype.onTap = function (e) {
         e.preventDefault();

@@ -85,8 +85,6 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
     @ViewChild('header') childHeader;
     @ViewChild(IonPullDownTabComponent) tab:IonPullDownTabComponent;
 
-    private dragStartY: number = null;
-
     protected _headerMeta: HeaderMetadata;
     protected _currentViewMeta: ViewMetadata;
     protected _oldState: IonPullDownHeaderState;
@@ -129,11 +127,9 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
         }
 
         function handler(event) {
-            console.log(event.type);
             switch(event.type){
                 case 'panstart':
-                    console.log("->panstart");
-                    component.dragStartY = null;
+                    console.log(component.childHeader);
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transition', 'none');
                     break;
                 case 'pan':
@@ -151,8 +147,6 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transform', 'translate3d(0, ' + -xlate + 'px, 0)');
                     break;
                 case 'panend':
-                    console.log("->panend");
-                    component.dragStartY = null;
                     component.renderer.setElementStyle(component.childHeader.nativeElement, 'transition', '300ms ease-in-out');
 
                     // Check if within buffer of top/bottom
@@ -251,6 +245,7 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
         this.onExpand.emit(null);
         this.onStateChange.emit(null);
         console.log('this._headerMeta.lastPosY : '+ this._headerMeta.lastPosY);
+        console.log(this.childHeader);
     }
 
     collapse(isInit: boolean = false) {
@@ -262,6 +257,7 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
         if (!isInit) this.onCollapse.emit(null);
         if (!isInit) this.onStateChange.emit(null);
         console.log('this._headerMeta.lastPosY : '+ this._headerMeta.lastPosY);
+        console.log(this.childHeader);
     }
 
     minimize() {
@@ -271,6 +267,7 @@ export class IonPullDownComponent  implements OnInit, AfterContentInit, DoCheck{
 
         this.onMinimize.emit(null);
         this.onStateChange.emit(null);
+        console.log(this.childHeader);
     }
 
 

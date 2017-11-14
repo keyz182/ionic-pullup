@@ -43,7 +43,6 @@ export declare class IonPullDownComponent implements OnInit, AfterContentInit, D
     onStateChange: EventEmitter<any>;
     childHeader: any;
     tab: IonPullDownTabComponent;
-    private dragStartY;
     protected _headerMeta: HeaderMetadata;
     protected _currentViewMeta: ViewMetadata;
     protected _oldState: IonPullDownHeaderState;
