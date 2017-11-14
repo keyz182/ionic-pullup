@@ -9,7 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import {IonPullupModule} from 'ionic-pullup';
+import {IonPullupModule} from '../../../src/ion-pullup.module';
 
 @NgModule({
   declarations: [

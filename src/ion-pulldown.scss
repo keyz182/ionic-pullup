@@ -1,0 +1,75 @@
+@import 'common';
+
+@mixin pulldown-tab($width, $height, $radius, $background: color($colors, primary, base), $foreground: color($colors, primary, contrast)) {
+  position: relative;
+  width: $width;
+  height: $height;
+  background: $background;
+  color: $foreground;
+  border-radius: 0 0 $radius $radius;
+  margin: 0 auto; 
+}
+
+@mixin pulldown-tab-shadow($shadowColor) {
+    box-shadow: 0px 2px 2px $shadowColor;
+}
+
+ion-pulldown {
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+
+  & * {
+    touch-action: pan-y !important;
+  }
+  background : color($colors, primary, base);  
+
+  .header {
+    &::before {
+      content: none;
+    }
+
+    ion-pulldown-tab {
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+
+      @include pulldown-tab($tabWidth, $tabHeight, $tabRadius, $tabBackground, $tabIconColor);
+      @include pulldown-tab-shadow($tabShadow);
+    }
+
+    ion-content {
+      &.content {
+        .fixed-content {
+          margin-bottom: 0 !important;
+        }
+        .scroll-content {
+          margin-bottom: 0 !important;
+        }
+      }
+      
+      &.content-ios  {
+        @import 'node_modules/ionic-angular/components/toolbar/toolbar.ios';
+
+        .scroll-content {
+          // bottom: calc(#{$toolbar-ios-height} + #{$tabHeight}) !important;
+        }
+      }
+      &.content-md  {
+        @import 'node_modules/ionic-angular/components/toolbar/toolbar.md';
+
+        .scroll-content {
+          // top: calc(#{$toolbar-md-height} + #{$tabHeight}) !important;
+        }
+      }
+    }
+
+    ion-toolbar {
+      @include pulldown-tab-shadow($tabShadow);
+    }
+  } 
+}
+
+ion-pulldown + ion-content {
+  // min toolbar height + tab button height
+  margin-top: calc(56px + 22px) !important;
+}

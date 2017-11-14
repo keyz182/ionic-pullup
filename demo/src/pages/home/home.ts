@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { IonPullUpFooterState} from 'ionic-pullup';
+import { IonPullUpFooterState, IonPullDownHeaderState} from '../../../../src/index';
 
 @Component({
   selector: 'page-home',
@@ -10,9 +10,11 @@ import { IonPullUpFooterState} from 'ionic-pullup';
 })
 export class HomePage {
   footerState: IonPullUpFooterState;
+  headerState: IonPullDownHeaderState;
 
   constructor(public navCtrl: NavController) {
     this.footerState = IonPullUpFooterState.Collapsed;
+    this.headerState = IonPullDownHeaderState.Collapsed;
   }
 
   footerExpanded() {
@@ -25,6 +27,24 @@ export class HomePage {
 
   toggleFooter() {
     this.footerState = this.footerState == IonPullUpFooterState.Collapsed ? IonPullUpFooterState.Expanded : IonPullUpFooterState.Collapsed;
+  }
+
+  headerExpanded() {
+    console.log('Header expanded!');
+  }
+
+  headerCollapsed() {
+    console.log('Header collapsed!');
+  }
+
+  toggleHeader() {
+    this.headerState = this.headerState == IonPullDownHeaderState.Collapsed ? IonPullDownHeaderState.Expanded : IonPullDownHeaderState.Collapsed;
+  }
+
+  onStateChange(content){
+    setTimeout(()=>{
+      content.resize();
+    }, 300);
   }
 
 }

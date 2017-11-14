@@ -15,20 +15,13 @@ limitations under the License.
 
 import { ChangeDetectionStrategy, Component, EventEmitter, ElementRef, Renderer, ViewChild, Output, Input } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { ViewMetadata } from './common';
 
 export interface FooterMetadata {
   height: number;
   posY: number;
   lastPosY: number;
   defaultHeight?: number;
-}
-
-export interface ViewMetadata {
-  tabs?: Element;
-  tabsHeight?: number;
-  hasBottomTabs?: boolean;  
-  header?: Element;
-  headerHeight?: number;
 }
 
 export interface FooterTab {
@@ -106,7 +99,7 @@ export class IonPullUpComponent  {
     });
   }
 
-   ngAfterContentInit() {    
+   ngAfterContentInit() {
       this.computeDefaults();
 
       this.state = IonPullUpFooterState.Collapsed;
